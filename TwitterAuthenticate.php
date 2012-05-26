@@ -84,13 +84,13 @@
 		 */
 		public function authenticate(CakeRequest $request, CakeResponse $response) {
 			$session = new CakeSession();
-			if (isset($request->data["Twitter"]) && $request->data["Twitter"]["login"] = 1) {
+			if (isset($request->data["Twitter"]) && $request->data["Twitter"]["login"] == 1) {
 				
 				// if the user clicks on twitter auth, we connect to twitter and write the 
 				// twitter token to the session
 				$this->getTwitterToken($session,$response);
 			}
-			if (isset($request->query["twitter_callback"]) && $request->query["twitter_callback"] = 1 && isset($request->query["oauth_token"])) {
+			if (isset($request->query["twitter_callback"]) && $request->query["twitter_callback"] == 1 && isset($request->query["oauth_token"])) {
 				
 				// read the twitter callback data and create/find a matching user in the database
 				$requestToken = new OAuthToken($session->read('twitter_request_token_key'),$session->read('twitter_request_token_secret'));
